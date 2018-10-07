@@ -1,33 +1,46 @@
-# Sharepass
+# Devchallenge 1101
 
-Welcome to your new Hanami project!
+## API reference
 
-## Setup
-
-How to run tests:
-
+##### POST /password
+Request body:
 ```
-% bundle exec rake
+{
+  "password": {
+    "value": "qwerty",
+    "available_utill": "07-10-2018"
+  }
+}
 ```
-
-How to run the development console:
-
+Response:
 ```
-% bundle exec hanami console
-```
-
-How to run the development server:
-
-```
-% bundle exec hanami server
-```
-
-How to prepare (create and migrate) DB for `development` and `test` environments:
-
-```
-% bundle exec hanami db prepare
-
-% HANAMI_ENV=test bundle exec hanami db prepare
+{
+  "password": {
+    "url": "http://localhost:2300/passwords/slug"
+  }
+}
 ```
 
-Explore Hanami [guides](http://hanamirb.org/guides/), [API docs](http://docs.hanamirb.org/1.2.0/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸
+##### POST /passwords
+Request body:
+```
+{
+  "passwords": [{
+    "value": "qwerty",
+    "available_utill": "07-10-2018"
+  }, {
+    "value": "12345",
+    "available_utill": "12-10-2018"
+  }]
+}
+```
+Response body:
+```
+{
+  "passwords": [{
+    "url": "http://localhost:2300/passwords/slug"
+  }, {
+    "url": "http://localhost:2300/password/another_slug"
+  }]
+}
+```
