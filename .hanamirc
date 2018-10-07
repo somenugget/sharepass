@@ -1,0 +1,3 @@
+project=sharepass
+test=rspec
+template=erb
