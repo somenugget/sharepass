@@ -4,7 +4,10 @@ gem 'rake'
 gem 'hanami',       '~> 1.2'
 gem 'hanami-model', '~> 1.2'
 
-gem 'sqlite3'
+gem 'pg'
+
+gem 'roar'
+gem 'trailblazer', '~> 2.1.0.rc1'
 
 group :development do
   # Code reloading
@@ -14,6 +17,7 @@ group :development do
 end
 
 group :test, :development do
+  gem 'byebug'
   gem 'dotenv', '~> 2.0'
 end
 

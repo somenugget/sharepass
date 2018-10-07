@@ -2,10 +2,10 @@ require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
 require_relative '../lib/sharepass'
-require_relative '../apps/web/application'
+require_relative '../apps/api/application'
 
 Hanami.configure do
-  mount Web::Application, at: '/'
+  mount Api::Application, at: '/'
 
   model do
     ##
@@ -27,13 +27,6 @@ Hanami.configure do
     schema     'db/schema.sql'
   end
 
-  mailer do
-    root 'lib/sharepass/mailers'
-
-    # See http://hanamirb.org/guides/mailers/delivery
-    delivery :test
-  end
-
   environment :development do
     # See: http://hanamirb.org/guides/projects/logging
     logger level: :debug
@@ -41,9 +34,5 @@ Hanami.configure do
 
   environment :production do
     logger level: :info, formatter: :json, filter: []
-
-    mailer do
-      delivery :smtp, address: ENV.fetch('SMTP_HOST'), port: ENV.fetch('SMTP_PORT')
-    end
   end
 end

@@ -1,7 +1,7 @@
 require 'hanami/helpers'
 require 'hanami/assets'
 
-module Web
+module Api
   class Application < Hanami::Application
     configure do
       ##
@@ -18,10 +18,7 @@ module Web
       #
       # When you add new directories, remember to add them here.
       #
-      load_paths << [
-        'controllers',
-        'views'
-      ]
+      load_paths << %w[controllers]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
       # Defaults to true.
@@ -109,56 +106,6 @@ module Web
       # it redirects to the secure equivalent (https). Disabled by default.
       #
       # force_ssl true
-
-      ##
-      # TEMPLATES
-      #
-
-      # The layout to be used by all views
-      #
-      layout :application # It will load Web::Views::ApplicationLayout
-
-      # The relative path to templates
-      #
-      templates 'templates'
-
-      ##
-      # ASSETS
-      #
-      assets do
-        # JavaScript compressor
-        #
-        # Supported engines:
-        #
-        #   * :builtin
-        #   * :uglifier
-        #   * :yui
-        #   * :closure
-        #
-        # See: http://hanamirb.org/guides/assets/compressors
-        #
-        # In order to skip JavaScript compression comment the following line
-        javascript_compressor :builtin
-
-        # Stylesheet compressor
-        #
-        # Supported engines:
-        #
-        #   * :builtin
-        #   * :yui
-        #   * :sass
-        #
-        # See: http://hanamirb.org/guides/assets/compressors
-        #
-        # In order to skip stylesheet compression comment the following line
-        stylesheet_compressor :builtin
-
-        # Specify sources for assets
-        #
-        sources << [
-          'assets'
-        ]
-      end
 
       ##
       # SECURITY
@@ -269,7 +216,6 @@ module Web
       # See: http://www.rubydoc.info/gems/hanami-view#Configuration
       view.prepare do
         include Hanami::Helpers
-        include Web::Assets::Helpers
       end
     end
 
