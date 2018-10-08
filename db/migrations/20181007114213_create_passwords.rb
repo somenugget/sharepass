@@ -4,7 +4,7 @@ Hanami::Model.migration do
       primary_key :id
 
       column :encrypted, String, null: false
-      column :salt,      String, null: false
+      column :iv,        String, null: false
       column :slug,      String, null: false, unique: true
 
       column :available_until, Date
