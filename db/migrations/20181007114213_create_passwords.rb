@@ -7,7 +7,7 @@ Hanami::Model.migration do
       column :salt,      String, null: false
       column :slug,      String, null: false, unique: true
 
-      column :available_util, Date
+      column :available_until, Date
 
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false

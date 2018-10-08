@@ -3,3 +3,9 @@ Style/ClassAndModuleChildren:
 
 Style/Documentation:
   Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100

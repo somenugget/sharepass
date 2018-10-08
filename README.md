@@ -8,7 +8,7 @@ Request body:
 {
   "password": {
     "value": "qwerty",
-    "available_util": "07-10-2018"
+    "available_until": "07-10-2018"
   }
 }
 ```
@@ -27,10 +27,10 @@ Request body:
 {
   "passwords": [{
     "value": "qwerty",
-    "available_utill": "07-10-2018"
+    "available_until": "07-10-2018"
   }, {
     "value": "12345",
-    "available_utill": "12-10-2018"
+    "available_until": "12-10-2018"
   }]
 }
 ```

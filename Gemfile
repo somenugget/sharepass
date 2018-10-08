@@ -6,8 +6,8 @@ gem 'hanami-model', '~> 1.2'
 
 gem 'pg'
 
+gem 'multi_json'
 gem 'roar'
-gem 'trailblazer', '~> 2.1.0.rc1'
 
 group :development do
   # Code reloading

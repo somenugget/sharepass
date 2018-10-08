@@ -1,5 +1,6 @@
 require 'hanami/helpers'
 require 'hanami/assets'
+require 'hanami/interactor'
 
 module Api
   class Application < Hanami::Application
