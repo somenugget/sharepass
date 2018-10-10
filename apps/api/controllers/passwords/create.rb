@@ -11,9 +11,9 @@ module Api::Controllers::Passwords
 
     def call(params)
       if params.valid?
-        result = CreatePassword.new.call(params: params)
+        result = CreatePassword.new.call(params[:password])
         self.status = 201
-        self.body = '{"url": "ddd"}'
+        self.body = { url: Api.routes.url(:password, id: result.password.slug) }
       else
         self.body = ErrorsRepresenter.new(params).to_json
         self.status = 422

@@ -1,3 +1,5 @@
+require 'base64'
+
 class EncryptString
   include Hanami::Interactor
 
@@ -12,7 +14,8 @@ class EncryptString
     cipher.encrypt
     cipher.key = @key
 
-    @iv = cipher.random_iv
-    @encrypted = cipher.update(string) + cipher.final
+    # use Base64 to be able to store encrypted value to database
+    @iv = Base64.encode64(cipher.random_iv)
+    @encrypted = Base64.encode64(cipher.update(string) + cipher.final)
   end
 end

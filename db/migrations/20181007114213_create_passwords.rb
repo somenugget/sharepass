@@ -3,8 +3,8 @@ Hanami::Model.migration do
     create_table :passwords do
       primary_key :id
 
-      column :encrypted, String, null: false
-      column :iv,        String, null: false
+      column :encrypted, String, null: false, encoding: 'SQL_ASCII', charset: 'SQL_ASCII', collation: 'SQL_ASCII'
+      column :iv,        String, null: false, charset: 'SQL_ASCII'
       column :slug,      String, null: false, unique: true
 
       column :available_until, Date

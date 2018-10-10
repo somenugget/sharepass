@@ -12,11 +12,11 @@ class CreatePassword
   end
 
   def call(value:, available_until: nil)
-    slug      = @generate_slug.call
-    result    = @encrypt_string.call(string: value)
-    @password = @repository.create(available_until: available_until,
-                                   encrypted: result.encrypted,
-                                   iv: result.iv,
-                                   slug: slug)
+    slug_result = @generate_slug.call
+    result      = @encrypt_string.call(string: value)
+    @password   = @repository.create(available_until: available_until,
+                                     encrypted: result.encrypted,
+                                     iv: result.iv,
+                                     slug: slug_result.slug)
   end
 end

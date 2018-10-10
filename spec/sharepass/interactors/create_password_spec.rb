@@ -8,7 +8,7 @@ describe CreatePassword do
     generate_slug = instance_double('GenerateSlug')
     encrypt_string = instance_double('EncryptString')
 
-    expect(generate_slug).to receive(:call).and_return('1')
+    expect(generate_slug).to receive(:call).and_return(double(slug: '1'))
     expect(encrypt_string).to receive(:call).with(string: attributes[:value])
                                             .and_return(double(encrypted: '2', iv: '3'))
     expect(repository).to receive(:create).with(available_until: attributes[:available_until],

@@ -1,9 +1,11 @@
 RSpec.describe Api::Controllers::Passwords::Show, type: :action do
   let(:action) { described_class.new }
-  let(:params) { Hash[] }
+  let(:password) { CreatePassword.new.call(value: '12345').password }
 
   it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+    status, _headers, body = action.call id: password.slug
+
+    expect(status).to eq 200
+    expect(body[:password]).to eq '12345'
   end
 end

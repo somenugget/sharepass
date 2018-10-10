@@ -1,3 +1,5 @@
+require 'base64'
+
 class DecryptString
   include Hanami::Interactor
 
@@ -11,8 +13,8 @@ class DecryptString
     decipher = OpenSSL::Cipher::AES256.new :CBC
     decipher.decrypt
     decipher.key = @key
-    decipher.iv = iv
+    decipher.iv = Base64.decode64 iv
 
-    @decrypted = decipher.update(encrypted) + decipher.final
+    @decrypted = decipher.update(Base64.decode64(encrypted)) + decipher.final
   end
 end
