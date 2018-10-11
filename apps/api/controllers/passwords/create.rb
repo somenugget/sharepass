@@ -3,10 +3,7 @@ module Api::Controllers::Passwords
     include Api::Action
 
     params do
-      required(:password).schema do
-        required(:value).filled(:str?)
-        optional(:available_until)
-      end
+      required(:password).schema(Api::Validations::CreatePassword)
     end
 
     def call(params)

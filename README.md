@@ -2,7 +2,7 @@
 
 ## API reference
 
-##### POST /password
+##### POST /passwords
 Request body:
 ```
 {
@@ -21,7 +21,7 @@ Response:
 }
 ```
 
-##### POST /passwords
+##### POST /passwords/batch
 Request body:
 ```
 {
