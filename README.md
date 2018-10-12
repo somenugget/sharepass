@@ -16,7 +16,7 @@ Response:
 ```
 {
   "password": {
-    "url": "http://localhost:2300/passwords/slug"
+    "url": "http://localhost:2300/passwords/<slug>"
   }
 }
 ```
@@ -38,9 +38,9 @@ Response body:
 ```
 {
   "passwords": [{
-    "url": "http://localhost:2300/passwords/slug"
+    "url": "http://localhost:2300/passwords/<slug>"
   }, {
-    "url": "http://localhost:2300/password/another_slug"
+    "url": "http://localhost:2300/password/<another_slug>"
   }]
 }
 ```

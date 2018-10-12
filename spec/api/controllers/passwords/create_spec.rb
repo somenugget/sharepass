@@ -4,10 +4,11 @@ RSpec.describe Api::Controllers::Passwords::Create, type: :action do
 
   it 'creates password' do
     status, _headers, body = action.call(params)
+    body = JSON.parse(body.first)
     repository = PasswordRepository.new
 
     expect(status).to eq 201
-    expect(body[:url]).to eq Api.routes.url(:password, id: repository.last.slug)
+    expect(body['url']).to eq Api.routes.url(:password, id: repository.last.slug)
   end
 
   it 'fails with empty password' do

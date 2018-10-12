@@ -16,8 +16,7 @@ module Api::Controllers::Passwords
           { url: Api.routes.url(:password, id: password.slug) }
         end
       else
-        self.body = ErrorsRepresenter.new(params).to_json
-        self.status = 422
+        status 422, ErrorsRepresenter.new(params).to_json
       end
     end
   end

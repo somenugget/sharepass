@@ -7,22 +7,19 @@ module Api::Controllers::Passwords
     end
 
     def call(params)
-      password = PasswordRepository.new.find_by_slug(params[:id])
-      if password.nil?
-        self.body = { error: 'Wrong url' }
-        self.status = 404
-        return
-      end
+      password = find_password(params[:id])
+      halt 404, { error: ['Password not found'] }.to_json unless password
 
-      decryption_result = DecryptString.new.call(encrypted: password.encrypted, iv: password.iv)
+      status 200, Api::Serializers::ShownPassword.new(password).to_json
+    end
 
-      if decryption_result.success?
-        self.body = { password: decryption_result.decrypted }
-        self.status = 200
-      else
-        self.body = { error: 'Smth wrong' }
-        self.status = 400
-      end
+    private
+
+    def find_password(slug)
+      PasswordRepository.new.find_by_slug(params[:id])
+    end
+
+    def not_found_message
     end
   end
 end

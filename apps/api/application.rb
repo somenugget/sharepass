@@ -19,7 +19,7 @@ module Api
       #
       # When you add new directories, remember to add them here.
       #
-      load_paths << %w[validators controllers]
+      load_paths << %w[validators controllers serializers]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
       # Defaults to true.
