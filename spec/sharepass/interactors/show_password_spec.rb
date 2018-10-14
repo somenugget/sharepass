@@ -1,14 +1,36 @@
 require 'spec_helper'
 
-describe ShowPassword do
+RSpec.describe ShowPassword do
   context 'password is not shown before' do
-    let(:password) { PasswordRepository.new.create(encrypted: '1', iv: '1', slug: '1') }
+    let(:password) do
+      PasswordRepository.new.create encrypted: '1',
+                                    iv: '1',
+                                    slug: '1',
+                                    available_until: Time.now + (60 * 60 * 24)
+    end
 
     it 'shows password' do
       result = described_class.new(decrypt_string: double(call: double(decrypted: '1')))
                               .call(slug: password.slug)
 
       expect(result).to be_a_success
+    end
+  end
+
+  context 'password is expired' do
+    let(:password) do
+      PasswordRepository.new.create encrypted: '1',
+                                    iv: '1',
+                                    slug: '1',
+                                    available_until: Time.now - (60 * 60 * 24)
+    end
+
+    it 'fails' do
+      result = described_class.new(decrypt_string: double(call: double(decrypted: '1')))
+                              .call(slug: password.slug)
+
+      expect(result).not_to be_a_success
+      expect(result.errors).to eq(['Password is expired!'])
     end
   end
 
