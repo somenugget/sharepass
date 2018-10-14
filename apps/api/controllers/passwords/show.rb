@@ -7,19 +7,21 @@ module Api::Controllers::Passwords
     end
 
     def call(params)
-      password = find_password(params[:id])
-      halt 404, { error: ['Password not found'] }.to_json unless password
+      shown = ShowPassword.new.call(slug: params[:id])
 
-      status 200, Api::Serializers::ShownPassword.new(password).to_json
+      create_transition(shown.password)
+
+      halt 400, Api::Serializers::Errors.new(shown).to_json unless shown.success?
+
+      status 200, Api::Serializers::ShownPassword.new(shown.password).to_json
     end
 
     private
 
-    def find_password(slug)
-      PasswordRepository.new.find_by_slug(params[:id])
-    end
+    def create_transition(password)
+      result = CreateTransition.new.call(password: password, request: request)
 
-    def not_found_message
+      halt 400, Api::Serializers::Errors.new(result).to_json unless result.success?
     end
   end
 end
