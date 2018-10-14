@@ -13,3 +13,4 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'apps/api/application.rb'

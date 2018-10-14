@@ -9,7 +9,7 @@ class DecryptString
     @key = Digest::SHA256.digest key
   end
 
-  def call(encrypted:, iv:)
+  def call(encrypted:, iv:) # rubocop:disable Naming/UncommunicativeMethodParamName
     decipher = OpenSSL::Cipher::AES256.new :CBC
     decipher.decrypt
     decipher.key = @key

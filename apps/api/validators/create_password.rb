@@ -8,4 +8,3 @@ module Api::Validations
     end
   end
 end
-

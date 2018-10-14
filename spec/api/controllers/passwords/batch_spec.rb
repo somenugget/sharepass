@@ -9,11 +9,13 @@ RSpec.describe Api::Controllers::Passwords::Batch, type: :action do
 
   it 'creates password' do
     status, _headers, body = action.call(params)
+    body = JSON.parse(body.first)
+
     expect(status).to eq 201
 
     passwords = PasswordRepository.new.all.last(2)
 
-    expect(body.first[:url]).to eq Api.routes.url(:password, id: passwords.first.slug)
-    expect(body.last[:url]).to eq Api.routes.url(:password, id: passwords.last.slug)
+    expect(body['passwords'].first['url']).to eq Api.routes.url(:password, id: passwords.first.slug)
+    expect(body['passwords'].last['url']).to eq Api.routes.url(:password, id: passwords.last.slug)
   end
 end

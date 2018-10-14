@@ -8,7 +8,7 @@ class BatchCreatePassword
     @passwords = []
   end
 
-  def call(passwords:)
+  def call(passwords:) # rubocop:disable Metrics/MethodLength
     PasswordRepository.new.transaction do
       passwords.each do |password_params|
         result = @create_password.call value: password_params[:value],

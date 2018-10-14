@@ -10,10 +10,8 @@ gem 'multi_json'
 gem 'roar'
 
 group :development do
-  # Code reloading
-  # See: http://hanamirb.org/guides/projects/code-reloading
-  gem 'shotgun', platforms: :ruby
   gem 'hanami-webconsole'
+  gem 'shotgun', platforms: :ruby
 end
 
 group :test, :development do
@@ -22,11 +20,8 @@ group :test, :development do
 end
 
 group :test do
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'rspec'
-  gem 'capybara'
-end
-
-group :production do
-  # gem 'puma'
+  gem 'simplecov', require: false
 end
