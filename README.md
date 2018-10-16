@@ -1,7 +1,10 @@
 # Devchallenge 1101
 
-## API reference
+Application receives a value and returns a link, that can be shared with another person.
+Value is stored in encrypted form.
+Link will be available only once.
 
+## API reference
 ##### POST /passwords
 Request body:
 ```
@@ -16,8 +19,15 @@ Response:
 ```
 {
   "password": {
-    "url": "http://localhost:2300/passwords/<slug>"
+    "url": "http://localhost:8080/passwords/<slug>"
   }
+}
+```
+
+Second try to see password will show
+```
+{
+  "errors":["Password was already shown!"]
 }
 ```
 
@@ -38,9 +48,9 @@ Response body:
 ```
 {
   "passwords": [{
-    "url": "http://localhost:2300/passwords/<slug>"
+    "url": "http://localhost:8080/passwords/<slug>"
   }, {
-    "url": "http://localhost:2300/password/<another_slug>"
+    "url": "http://localhost:8080/password/<another_slug>"
   }]
 }
 ```
